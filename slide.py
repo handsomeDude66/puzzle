@@ -70,9 +70,8 @@ class Params(BaseModel):
 
 
 @app.post('/puzzle')
-async def puzzle(params: Params = Body(embed=True)) -> str:
+async def puzzle(params: Params) -> str:
     images = params.images
-
     # 解码Base64字符串
     # 将数据转换为NumPy数组
     # 使用cv2.imdecode将NumPy数组转换为图像
