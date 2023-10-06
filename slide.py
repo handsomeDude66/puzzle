@@ -6,7 +6,7 @@ import cv2
 from cv2.typing import MatLike
 import numpy as np
 # from flask import Flask, request
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 from fastapi.requests import Request
 from PIL import Image
 
@@ -64,14 +64,13 @@ async def forEach(bg, block):
     pass
 
 
-@app.post('/puzzle')
-async def puzzle(request: Request):
-    # a = request.args.get('a')  # 获取单变量
-    # print(a)  # 打印接收到的数据
-    data: dict = await request.json()
+class Params:
+    images: tuple[str, str]
 
-    # 获取images参数
-    images: tuple[str, str] = data['params']['images']
+
+@app.post('/puzzle')
+async def puzzle(params: Params = Body(embed=True)):
+    images = params.images
 
     # 解码Base64字符串
     # 将数据转换为NumPy数组
