@@ -8,6 +8,7 @@ import numpy as np
 # from flask import Flask, request
 from fastapi import FastAPI, Body
 from fastapi.requests import Request
+from pydantic import BaseModel
 from PIL import Image
 
 app = FastAPI()
@@ -64,12 +65,12 @@ async def forEach(bg, block):
     pass
 
 
-class Params:
+class Params(BaseModel):
     images: tuple[str, str]
 
 
 @app.post('/puzzle')
-async def puzzle(params: Params = Body(embed=True)):
+async def puzzle(params: Params = Body(embed=True)) -> str:
     images = params.images
 
     # 解码Base64字符串
