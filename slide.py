@@ -1,4 +1,5 @@
 import base64
+from urllib.parse import parse_qs
 from io import BytesIO
 from pathlib import Path
 
@@ -61,30 +62,28 @@ def imshow(img, winname='test', delay=0):
     cv2.destroyAllWindows()
 
 
-async def forEach(bg, block):
-    pass
-
-
 class Params(BaseModel):
-    images: tuple[str, str]
+    image1: str
+    image2: str
 
 
 @app.post('/puzzle')
-async def puzzle(params: Params) -> str:
-    images = params.images
+async def puzzle(request: Request) -> int:
     # 解码Base64字符串
     # 将数据转换为NumPy数组
     # 使用cv2.imdecode将NumPy数组转换为图像
-
-    file = Image.open(BytesIO(base64.b64decode(images[0])))
+    params = parse_qs(await request.body())
+    image1 = params.get(b'image1') or [b'']
+    image2 = params.get(b'image2') or [b'']
+    file = Image.open(BytesIO(base64.b64decode(image1[0])))
     block = cv2.cvtColor(np.asarray(file), cv2.COLOR_RGB2BGR)
-    file = Image.open(BytesIO(base64.b64decode(images[1])))
+    file = Image.open(BytesIO(base64.b64decode(image2[0])))
     bg = cv2.cvtColor(np.asarray(file), cv2.COLOR_RGB2BGR)
     # imshow(block)
     # imshow(bg)
     # block = cv2.imdecode( np.frombuffer(base64.b64decode(images[0]), np.uint8), cv2.IMREAD_COLOR)
     # bg = cv2.imdecode( np.frombuffer(base64.b64decode(images[1]), np.uint8), cv2.IMREAD_COLOR)
     # cv2.imshow("Title", bg)
-    print(get_distance(block, bg))
-    return 'OK'
+    distance = get_distance(block, bg)
+    return distance
     # 获取请求体中的数据
