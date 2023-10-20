@@ -1,3 +1,7 @@
+"""
+!Deprecated
+"""
+
 import base64
 from urllib.parse import parse_qs
 from io import BytesIO
@@ -7,12 +11,8 @@ import cv2
 from cv2.typing import MatLike
 import numpy as np
 # from flask import Flask, request
-from fastapi import FastAPI, Body
-from fastapi.requests import Request
 from pydantic import BaseModel
 from PIL import Image
-
-app = FastAPI()
 
 
 # bg = "./py/images/gap.png"
@@ -67,7 +67,6 @@ class Params(BaseModel):
     image2: str
 
 
-@app.post('/puzzle')
 async def puzzle(request: Request) -> int:
     # 解码Base64字符串
     # 将数据转换为NumPy数组
@@ -86,4 +85,3 @@ async def puzzle(request: Request) -> int:
     # cv2.imshow("Title", bg)
     distance = get_distance(block, bg)
     return distance
-    # 获取请求体中的数据
