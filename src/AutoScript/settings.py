@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!w$x@0u2^3(x0+0&ib8^eh8%wdqo#2@x_^^)i!v&be*enry%0c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'UTC'
 
@@ -151,7 +151,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # 跨域设置
 
-BASE_URL = 'http://localhost:8000' if DEBUG else ''
 INTERNAL_IPS = [
     # ...
     '127.0.0.1',

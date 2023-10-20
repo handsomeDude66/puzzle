@@ -2,11 +2,11 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default"]
+groups = ["default", "deploy"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:d8db7f7d90751d5ec4f8636eb33b02bfa87e69e975f7d9d6fbfa12ad98f4a40f"
+content_hash = "sha256:8702d7236ce6b8c76655b7da5f1da1b6f3345e17daba785c9944d7b936689de5"
 
 [[package]]
 name = "asgiref"
@@ -224,6 +224,16 @@ files = [
 ]
 
 [[package]]
+name = "setuptools"
+version = "68.2.2"
+requires_python = ">=3.8"
+summary = "Easily download, build, install, upgrade, and uninstall Python packages"
+files = [
+    {file = "setuptools-68.2.2-py3-none-any.whl", hash = "sha256:b454a35605876da60632df1a60f736524eb73cc47bbc9f3f1ef1b644de74fd2a"},
+    {file = "setuptools-68.2.2.tar.gz", hash = "sha256:4ac1475276d2f1c48684874089fefcd83bd7162ddaafb81fac866ba0db282a87"},
+]
+
+[[package]]
 name = "sqlparse"
 version = "0.4.4"
 requires_python = ">=3.5"
@@ -251,4 +261,12 @@ summary = "Implementation of RFC 6570 URI Templates"
 files = [
     {file = "uritemplate-4.1.1-py2.py3-none-any.whl", hash = "sha256:830c08b8d99bdd312ea4ead05994a38e8936266f84b9a7878232db50b044e02e"},
     {file = "uritemplate-4.1.1.tar.gz", hash = "sha256:4346edfc5c3b79f694bccd6d6099a322bbeb628dbf2cd86eea55a456ce5124f0"},
+]
+
+[[package]]
+name = "uwsgi"
+version = "2.0.22"
+summary = "The uWSGI server"
+files = [
+    {file = "uwsgi-2.0.22.tar.gz", hash = "sha256:4cc4727258671ac5fa17ab422155e9aaef8a2008ebb86e4404b66deaae965db2"},
 ]
