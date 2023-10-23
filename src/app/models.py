@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils import timezone
 
-from common.validators import v_time_gt_now
+from common.validators import v_min, v_time_gt_now
 
 # Create your models here.
 
@@ -16,7 +16,7 @@ class User(AbstractUser):
 
 class Device(models.Model):
     """设备"""
-    id = models.CharField('设备ID', primary_key=True, max_length=16)
+    id = models.CharField('设备ID', primary_key=True, max_length=16, validators=[v_min(16)])
 
 
 class Password(models.Model):
