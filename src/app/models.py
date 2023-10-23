@@ -30,5 +30,4 @@ class Password(models.Model):
 
     def is_valid(self):
         """是否有效"""
-        print(self.expiry_time)
         return timezone.now() < self.expiry_time
