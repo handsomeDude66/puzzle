@@ -21,8 +21,7 @@ class Device(models.Model):
 
 class Password(models.Model):
     """卡密"""
-    id = models.AutoField(primary_key=True)
-    password = models.CharField('卡密', max_length=16)
+    id = models.CharField('卡密', primary_key=True, max_length=16)
     expiry_time = models.DateTimeField('卡密过期时间', validators=[v_time_gt_now])
     devices = models.ManyToManyField(Device)
 
