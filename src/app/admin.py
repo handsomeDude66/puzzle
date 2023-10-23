@@ -14,8 +14,7 @@ class DeviceAdmin(admin.ModelAdmin):
 
 
 class PasswordAdmin(admin.ModelAdmin):
-    list_display = ('id', 'password', 'expiry_time', 'display_devices')
-    exclude = ('password', 'devices')
+    list_display = ('id', 'expiry_time', 'display_devices')
 
     def display_devices(self, obj: Password):
         return f"[{', '.join([repr(i.id) for i in obj.devices.all()])}]"

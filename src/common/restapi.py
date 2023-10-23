@@ -9,7 +9,7 @@ from django.http.response import (Http404, HttpResponseBase,
 from django.shortcuts import render
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import serializers
+from rest_framework import serializers, status
 from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 
@@ -65,6 +65,8 @@ def response_wrapper(func: Callable[..., HttpResponseBase | JsonValue | None]):
         except Exception as exc:
             traceback.print_exception(exc)
             return HttpResponseServerError()
+        if response is None:
+            return Response(status=status.HTTP_204_NO_CONTENT)
         if isinstance(response, HttpResponseBase):
             return response
         return Response(response)

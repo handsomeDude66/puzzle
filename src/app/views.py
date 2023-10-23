@@ -93,36 +93,37 @@ class PasswordViewSet(ModelViewSet):
     def create(self, request, data: dict):
         """创建卡密"""
         obj = Password.objects.create(
-            password=''.join(random.choices(string.hexdigits, k=16)),
+            id=''.join(random.choices(string.hexdigits, k=16)),
             **data,
         )
         return PasswordOut(obj).data
 
     @restapi(response=PasswordOut)
-    def retrieve(self, request, pk: int):
+    def retrieve(self, request, pk: str):
         """检索卡密"""
         return super().retrieve(request, pk)
 
-    @restapi(permissions=[IsAdminUser], response=PasswordOut)
-    def update(self, request, pk: int):
+    @restapi(permissions=[IsAdminUser], body=PasswordIn, response=PasswordOut)
+    def update(self, request, pk: str, serializer: PasswordIn, data: dict):
         """更新卡密"""
-        return super().update(request, pk)
+        obj = serializer.update(self.get_object(), data)
+        return PasswordOut(obj).data
 
     @restapi(permissions=[IsAdminUser])
-    def destroy(self, request, pk: int):
+    def destroy(self, request, pk: str):
         """删除卡密"""
         return super().destroy(request, pk)
 
     @action(methods=['GET'], detail=True)
     @restapi(response=openapi.Response('是否有效', openapi.Schema(type=openapi.TYPE_BOOLEAN)))
-    def is_valid(self, request, pk: int):
+    def is_valid(self, request, pk: str):
         """是否有效"""
         password: Password = self.get_object()
         return password.is_valid()
 
     @action(methods=['POST'], detail=True)
     @restapi(body=PasswordBindIn, response=openapi.Response('是否成功', openapi.Schema(type=openapi.TYPE_BOOLEAN)))
-    def bind(self, request, pk: int, data: dict):
+    def bind(self, request, pk: str, data: dict):
         """卡密设备绑定"""
         password: Password = self.get_object()
         if not password.is_valid() or password.devices.count() >= 3:
@@ -134,7 +135,7 @@ class PasswordViewSet(ModelViewSet):
 
     @action(methods=['POST'], detail=True)
     @restapi(body=PasswordBindIn)
-    def unbind(self, request, pk: int, data: dict):
+    def unbind(self, request, pk: str, data: dict):
         """卡密设备解绑"""
         password: Password = self.get_object()
         device = Device.objects.get(data['device_id'])
