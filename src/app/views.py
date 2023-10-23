@@ -138,6 +138,6 @@ class PasswordViewSet(ModelViewSet):
     def unbind(self, request, pk: str, data: dict):
         """卡密设备解绑"""
         password: Password = self.get_object()
-        device = Device.objects.get(data['device_id'])
+        device = Device.objects.get(id=data['device_id'])
         password.devices.remove(device)
         password.save()
