@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register('passwords', views.PasswordViewSet)
 
 urlpatterns = [
+    path('login/', views.LoginView.as_view()),
     path('puzzle/', views.PuzzleView.as_view()),
     path('', include(router.urls)),
 ]

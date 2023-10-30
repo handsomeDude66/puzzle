@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 from cv2.typing import MatLike
 from django.http import HttpRequest
+from django.contrib.auth import authenticate, login
 from drf_yasg import openapi
 from PIL import Image
 from rest_framework.decorators import action
@@ -20,6 +21,16 @@ from .models import *
 from .serializers import *
 
 # Create your views here.
+
+
+class LoginView(APIView):
+    @restapi(body=LoginIn, response=openapi.Response('是否成功', openapi.Schema(type=openapi.TYPE_BOOLEAN)))
+    def post(self, request: HttpRequest, data: dict):
+        user = authenticate(request, **data)
+        if user is None:
+            return False
+        login(request, user)
+        return True
 
 
 class PuzzleView(APIView):
@@ -84,12 +95,12 @@ class PasswordViewSet(ModelViewSet):
     queryset = Password.objects.all()
     serializer_class = PasswordOut
 
-    @restapi(permissions=[IsAdminUser], response=PasswordOut(many=True))
+    @restapi(response=PasswordOut(many=True))
     def list(self, request):
         """卡密列表"""
         return super().list(request)
 
-    @restapi(permissions=[IsAdminUser], body=PasswordIn, response=PasswordOut)
+    @restapi(body=PasswordIn, response=PasswordOut)
     def create(self, request, data: dict):
         """创建卡密"""
         obj = Password.objects.create(
@@ -103,13 +114,13 @@ class PasswordViewSet(ModelViewSet):
         """检索卡密"""
         return super().retrieve(request, pk)
 
-    @restapi(permissions=[IsAdminUser], body=PasswordIn, response=PasswordOut)
+    @restapi(body=PasswordIn, response=PasswordOut)
     def update(self, request, pk: str, serializer: PasswordIn, data: dict):
         """更新卡密"""
         obj = serializer.update(self.get_object(), data)
         return PasswordOut(obj).data
 
-    @restapi(permissions=[IsAdminUser])
+    @restapi()
     def destroy(self, request, pk: str):
         """删除卡密"""
         return super().destroy(request, pk)

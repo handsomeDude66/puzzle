@@ -97,7 +97,7 @@ def serializer_wrapper(
             else:
                 serializer = body(data=request.data)
         else:
-            return HttpResponse422()
+            raise Exception('没有提供表单')
         if not serializer.is_valid():
             return HttpResponse422(serializer.errors)
 
@@ -120,7 +120,7 @@ def permission_wrapper(
         for permission in __permissions:
             if permission.has_permission(request, self):
                 return func(self, request=request, *args, **kwds)
-        return HttpResponse422()
+        return HttpResponse422('无权访问')
     wrapper.__name__ = func.__name__
     return wrapper
 
