@@ -6,12 +6,11 @@ from io import BytesIO
 import cv2
 import numpy as np
 from cv2.typing import MatLike
-from django.http import HttpRequest
 from django.contrib.auth import authenticate, login
+from django.http import HttpRequest
 from drf_yasg import openapi
 from PIL import Image
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAdminUser
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 

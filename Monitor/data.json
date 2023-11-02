@@ -1,0 +1,443 @@
+{
+    "actionControl": {
+        "calculatePriceControl": {
+            "needCalc": "false",
+            "calcFailSafe": "true",
+            "calculateTag": "1_0_0_1"
+        },
+        "renderingControl": {
+            "renderingType": "1"
+        }
+    },
+    "itemBuyBtn": {
+        "btnStatus": "206",
+        "btnText": "选座购买",
+        "btnOrigin": "11"
+    },
+    "itemAdditionalInfo": {
+        "performZoneNotice": "场次时间均为演出当地时间",
+        "serviceFeeAgreementURL": "https://m.taopiaopiao.com/tickets/dianying/pages/alfheim/content.html?id=2204793&displayType=plain&hidetitle=yes&hsb=yes&interact=no&hideAuthorInfo=yes"
+    },
+    "performCalendar": {
+        "today": "20231101",
+        "currentPerformId": "212074009",
+        "showDates": "false",
+        "performViews": [
+            {
+                "performId": "212074009",
+                "performName": "广东vs天津",
+                "performDateTS": "1698838500000",
+                "performBeginDTStr": "202311011900",
+                "checked": "true",
+                "mainText": "广东vs天津",
+                "buyPermission": "true",
+                "chooseSeatType": "1",
+                "salable": "true",
+                "clickable": "true",
+                "tags": [],
+                "mktPromotionTips": ""
+            },
+            {
+                "performId": "212125036",
+                "performName": "广东vs宁波",
+                "performDateTS": "1699616100000",
+                "performBeginDTStr": "202311011900",
+                "checked": "false",
+                "mainText": "广东vs宁波",
+                "buyPermission": "true",
+                "chooseSeatType": "1",
+                "salable": "true",
+                "clickable": "true",
+                "tags": [],
+                "mktPromotionTips": ""
+            }
+        ]
+    },
+    "perform": {
+        "performId": "212074009",
+        "performName": "广东vs天津",
+        "chooseSeatType": "1",
+        "saleForm": "1",
+        "realNameType": "2",
+        "performDateTS": "1698838500000",
+        "performBeginDTStr": "202311011900",
+        "limitQuantity": "6",
+        "itemLimitPerOrder": "6",
+        "buyPermission": "true",
+        "hasPromotion": "false",
+        "performSalable": "true",
+        "presale": "false",
+        "hasFreePackage": "false",
+        "skuList": [
+            {
+                "skuId": "5120993696411",
+                "itemId": "742825990950",
+                "priceId": "260672211",
+                "priceIdOfTC": "260672211",
+                "status": "1",
+                "frontEndStatus": "2",
+                "priceName": "E票",
+                "price": "150.00",
+                "dashPrice": "150.00",
+                "salableQuantity": "0",
+                "mq": "0",
+                "skuSalable": "false",
+                "packagesFlag": "false",
+                "freePackage": "false",
+                "auctionUnit": "1",
+                "hasPromotion": "false",
+                "buyPermission": "true",
+                "clickable": "true",
+                "tags": [
+                    {
+                        "tag": "1",
+                        "tagDesc": "缺货登记"
+                    }
+                ],
+                "tips": {
+                    "tagTip": "暂时无票，若到货，平台会根据票量，按照提交顺序，给部分用户推送通知；若始终缺货，将不做另外通知"
+                },
+                "followRelationTargetType": "8",
+                "otherTag": {
+                    "tag": "1",
+                    "tagOrientation": "2",
+                    "tagDesc": "缺货登记"
+                },
+                "mqw": "0"
+            },
+            {
+                "skuId": "5120993696414",
+                "itemId": "742825990950",
+                "priceId": "260672215",
+                "priceIdOfTC": "260672215",
+                "status": "1",
+                "frontEndStatus": "1",
+                "priceName": "D票",
+                "price": "200.00",
+                "dashPrice": "200.00",
+                "salableQuantity": "6",
+                "mq": "6",
+                "skuSalable": "true",
+                "packagesFlag": "false",
+                "freePackage": "false",
+                "auctionUnit": "1",
+                "hasPromotion": "false",
+                "buyPermission": "true",
+                "clickable": "true",
+                "tags": [],
+                "mktPromotionTips": "",
+                "mqw": "0"
+            },
+            {
+                "skuId": "5120993696418",
+                "itemId": "742825990950",
+                "priceId": "260672242",
+                "priceIdOfTC": "260672242",
+                "status": "1",
+                "frontEndStatus": "1",
+                "priceName": "C票",
+                "price": "300.00",
+                "dashPrice": "300.00",
+                "salableQuantity": "6",
+                "mq": "6",
+                "skuSalable": "true",
+                "packagesFlag": "false",
+                "freePackage": "false",
+                "auctionUnit": "1",
+                "hasPromotion": "false",
+                "buyPermission": "true",
+                "clickable": "true",
+                "tags": [],
+                "mktPromotionTips": "",
+                "mqw": "0"
+            },
+            {
+                "skuId": "5120993696419",
+                "itemId": "742825990950",
+                "priceId": "260672248",
+                "priceIdOfTC": "260672248",
+                "status": "1",
+                "frontEndStatus": "1",
+                "priceName": "B票",
+                "price": "400.00",
+                "dashPrice": "400.00",
+                "salableQuantity": "6",
+                "mq": "6",
+                "skuSalable": "true",
+                "packagesFlag": "false",
+                "freePackage": "false",
+                "auctionUnit": "1",
+                "hasPromotion": "false",
+                "buyPermission": "true",
+                "clickable": "true",
+                "tags": [],
+                "mktPromotionTips": "",
+                "mqw": "0"
+            },
+            {
+                "skuId": "5120993696420",
+                "itemId": "742825990950",
+                "priceId": "260672251",
+                "priceIdOfTC": "260672251",
+                "status": "1",
+                "frontEndStatus": "2",
+                "priceName": "A票",
+                "price": "600.00",
+                "dashPrice": "600.00",
+                "salableQuantity": "0",
+                "mq": "0",
+                "skuSalable": "false",
+                "packagesFlag": "false",
+                "freePackage": "false",
+                "auctionUnit": "1",
+                "hasPromotion": "false",
+                "buyPermission": "true",
+                "clickable": "true",
+                "tags": [
+                    {
+                        "tag": "1",
+                        "tagDesc": "缺货登记"
+                    }
+                ],
+                "tips": {
+                    "tagTip": "暂时无票，若到货，平台会根据票量，按照提交顺序，给部分用户推送通知；若始终缺货，将不做另外通知"
+                },
+                "followRelationTargetType": "8",
+                "otherTag": {
+                    "tag": "1",
+                    "tagOrientation": "2",
+                    "tagDesc": "缺货登记"
+                },
+                "mqw": "0"
+            },
+            {
+                "skuId": "5120993696421",
+                "itemId": "742825990950",
+                "priceId": "260672253",
+                "priceIdOfTC": "260672253",
+                "status": "1",
+                "frontEndStatus": "2",
+                "priceName": "内场VIP二排",
+                "price": "700.00",
+                "dashPrice": "700.00",
+                "salableQuantity": "0",
+                "mq": "0",
+                "skuSalable": "false",
+                "packagesFlag": "false",
+                "freePackage": "false",
+                "auctionUnit": "1",
+                "hasPromotion": "false",
+                "buyPermission": "true",
+                "clickable": "true",
+                "tags": [
+                    {
+                        "tag": "1",
+                        "tagDesc": "缺货登记"
+                    }
+                ],
+                "tips": {
+                    "tagTip": "暂时无票，若到货，平台会根据票量，按照提交顺序，给部分用户推送通知；若始终缺货，将不做另外通知"
+                },
+                "followRelationTargetType": "8",
+                "otherTag": {
+                    "tag": "1",
+                    "tagOrientation": "2",
+                    "tagDesc": "缺货登记"
+                },
+                "mqw": "0"
+            },
+            {
+                "skuId": "5120993696422",
+                "itemId": "742825990950",
+                "priceId": "260672263",
+                "priceIdOfTC": "260672263",
+                "status": "1",
+                "frontEndStatus": "2",
+                "priceName": "内场VIP一排",
+                "price": "800.00",
+                "dashPrice": "800.00",
+                "salableQuantity": "0",
+                "mq": "0",
+                "skuSalable": "false",
+                "packagesFlag": "false",
+                "freePackage": "false",
+                "auctionUnit": "1",
+                "hasPromotion": "false",
+                "buyPermission": "true",
+                "clickable": "true",
+                "tags": [
+                    {
+                        "tag": "1",
+                        "tagDesc": "缺货登记"
+                    }
+                ],
+                "tips": {
+                    "tagTip": "暂时无票，若到货，平台会根据票量，按照提交顺序，给部分用户推送通知；若始终缺货，将不做另外通知"
+                },
+                "followRelationTargetType": "8",
+                "otherTag": {
+                    "tag": "1",
+                    "tagOrientation": "2",
+                    "tagDesc": "缺货登记"
+                },
+                "mqw": "0"
+            }
+        ]
+    },
+    "tradeInfo": {
+        "itemTags4Trade": [
+            "449602",
+            "449538",
+            "428610"
+        ],
+        "anewUltron": "true",
+        "inewUltron": "true",
+        "hnewUltron": "true"
+    },
+    "holidayCalendar": [],
+    "itemBasicInfo": {
+        "itemId": "742825990950",
+        "projectId": "217770023",
+        "projectTitle": "【东莞】2023-2024赛季CBA联赛 东莞赛区",
+        "projectStatus": "1",
+        "projectStatusTips": "正常",
+        "nationalStandardCityId": "441900",
+        "cityName": "东莞市",
+        "venueName": "东莞银行篮球中心(原东莞篮球中心)",
+        "exclusiveAgent": "false",
+        "mainImageUrl": "https://img.alicdn.com/imgextra/i2/2251059038/O1CN01413eTb2GdSWqriNDJ_!!2251059038.png",
+        "categoryId": "127434002",
+        "itemTitle": "【东莞】2023-2024赛季CBA联赛 东莞赛区",
+        "priceRange": "￥150.00 - ￥800.00",
+        "sellingStartTime": "202310311515",
+        "hasPromotion": "false",
+        "hasPrivilegeTag": "false",
+        "hasExclusivePrivilegeTag": "false",
+        "chooseService": "ALL_SUPPORT_CHOOSE",
+        "tags": [
+            "120577",
+            "123905",
+            "2049",
+            "65281",
+            "249858",
+            "6658",
+            "215809",
+            "221697",
+            "354817",
+            "388353",
+            "303617",
+            "8454",
+            "7943",
+            "361730",
+            "397057",
+            "417537",
+            "9995",
+            "22027",
+            "8459",
+            "16651",
+            "1481986",
+            "2414594",
+            "2699266",
+            "2744322",
+            "89665",
+            "36417",
+            "51009",
+            "257346",
+            "235585",
+            "241985",
+            "137281",
+            "141121",
+            "350017",
+            "360001",
+            "266817",
+            "303681",
+            "4166",
+            "478785",
+            "388674",
+            "23115",
+            "1611",
+            "4939",
+            "14155",
+            "23883",
+            "26699",
+            "28491",
+            "31051",
+            "32075",
+            "2028098",
+            "2602306",
+            "2782530",
+            "2783042",
+            "2819138",
+            "2744130",
+            "2744386",
+            "106881",
+            "385",
+            "260994",
+            "28802",
+            "101762",
+            "150145",
+            "191873",
+            "286337",
+            "3974",
+            "8838",
+            "373634",
+            "409985",
+            "9355",
+            "8843",
+            "12171",
+            "14731",
+            "16267",
+            "9867",
+            "9099",
+            "2443",
+            "395",
+            "1163",
+            "2028162",
+            "2413954",
+            "2414466",
+            "2744194",
+            "2744450",
+            "82369",
+            "91585",
+            "28353",
+            "37569",
+            "260033",
+            "155073",
+            "159169",
+            "334785",
+            "337601",
+            "303553",
+            "1478",
+            "12998",
+            "519361",
+            "383682",
+            "414145",
+            "417473",
+            "7371",
+            "2507",
+            "19403",
+            "31947",
+            "1630146",
+            "2119618",
+            "2414530",
+            "2782402",
+            "2783170",
+            "2744258"
+        ],
+        "t": "cEl4anNVWw1qTV11TEh1eXZTd2ZyXVEIZkNVf1o3GBcTIgoSBzI6bBIgOB8="
+    },
+    "responseInfo": {
+        "responseSuccess": "true",
+        "responseCode": ""
+    },
+    "skuRelatedText": {
+        "registerToastMap": {
+            "2": "若到货，我们将按照提交顺序为用户发送通知",
+            "3": "开抢前将通过<b><font color=\"#4D4D56\">APP消息</font></b>推送提醒你来抢票～"
+        }
+    },
+    "mktPromotion": {
+        "promotionRemark": "您选购优惠票档所对应的票品种类可能为套票、优惠票等类型，具体以您收到的票面信息标示为准。实际优惠情况以订单确认页为准。",
+        "contexts": []
+    }
+}
