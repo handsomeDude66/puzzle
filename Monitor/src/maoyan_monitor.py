@@ -1,52 +1,51 @@
 """猫眼监控"""
 import time
-from threading import Thread
+import threading
 
 import httpx
 from rich.console import Console
 from wxpusher import WxPusher
 
 
-class MyThread(Thread):
-    def __init__(self, performanceId: str):
+class MaoyanMonitor:
+    def __init__(self, performance_id: str, performance_name: str):
         self.app_name = "猫眼"
-        self.performance_id = performanceId
+        self.performance_id = performance_id
+        self.performance_name = performance_name
         self.alive = True
         self.headers = {
-            "User-Agent":
-                "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Mobile Safari/537.36",
+            "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Mobile Safari/537.36",
         }
         super().__init__()
 
-    def get_params(self):
-        return {
-            "performanceId": self.performance_id,
-            "optimus_risk_level": "71",
-            "optimus_code": "10",
-            "uuid": "x64b3dc4bhwlhm6b4yjm3qneby1k1b8v32ku42gy1f8ukdtrh22qoxnra9qtig01",
-            "sellChannel": "13",
-            "cityId": "10",
-            "token":
-                "AgFkIf6T4ulDKFT8q851YuDMWnncjUqqtUX-14DHYHT8Z6GTbHU2D40rbXZmjupNDveqWmIRDff30wAAAADKGwAAaRoxuAgQ8oCdBnDIinC4fDZX62g1ejE5F7iKZvIPoXOScG7rNa6R88pmLKG89JNb",
-            "yodaReady": "h5",
-            "csecplatform": "4",
-            "csecversion": "2.3.0",
-        }
-
-    def run(self):
+    def start(self):
         while self.alive:
             response = httpx.get(
                 url=f"https://show.maoyan.com/maoyansh/myshow/ajax/v2/performance/{self.performance_id}/shows/0",
-                params=self.get_params(),
+                params={
+                    "performanceId": self.performance_id,
+                    "optimus_risk_level": "71",
+                    "optimus_code": "10",
+                    "uuid": "x64b3dc4bhwlhm6b4yjm3qneby1k1b8v32ku42gy1f8ukdtrh22qoxnra9qtig01",
+                    "sellChannel": "13",
+                    "cityId": "10",
+                    "token": "AgFkIf6T4ulDKFT8q851YuDMWnncjUqqtUX-14DHYHT8Z6GTbHU2D40rbXZmjupNDveqWmIRDff30wAAAADKGwAAaRoxuAgQ8oCdBnDIinC4fDZX62g1ejE5F7iKZvIPoXOScG7rNa6R88pmLKG89JNb",
+                    "yodaReady": "h5",
+                    "csecplatform": "4",
+                    "csecversion": "2.3.0",
+                },
                 headers=self.headers,
             )
             # 得到场次，根据场次来得到表演id showId
             json_data: dict = response.json()
             # 获取到showid 演出时间
-            performances = [{
-                "showId": data["showId"],
-                "time": data["name"],
-            } for data in json_data["data"]]
+            performances = [
+                {
+                    "showId": data["showId"],
+                    "time": data["name"],
+                }
+                for data in json_data["data"]
+            ]
 
             console.log(performances)
 
@@ -63,7 +62,18 @@ class MyThread(Thread):
             response = httpx.get(
                 f"https://show.maoyan.com/maoyansh/myshow/ajax/v2/show/{performance['showId']}/tickets",
                 headers=self.headers,
-                params=self.get_params(),
+                params={
+                    "performanceId": self.performance_id,
+                    "optimus_risk_level": "71",
+                    "optimus_code": "10",
+                    "uuid": "x64b3dc4bhwlhm6b4yjm3qneby1k1b8v32ku42gy1f8ukdtrh22qoxnra9qtig01",
+                    "sellChannel": "13",
+                    "cityId": "10",
+                    "token": "AgFkIf6T4ulDKFT8q851YuDMWnncjUqqtUX-14DHYHT8Z6GTbHU2D40rbXZmjupNDveqWmIRDff30wAAAADKGwAAaRoxuAgQ8oCdBnDIinC4fDZX62g1ejE5F7iKZvIPoXOScG7rNa6R88pmLKG89JNb",
+                    "yodaReady": "h5",
+                    "csecplatform": "4",
+                    "csecversion": "2.3.0",
+                },
             )
             response_data = response.json()
             self.check_tickets(response_data["data"], performance, name_info)
@@ -87,13 +97,14 @@ class MyThread(Thread):
 
 
 def main():
-    # 薛之谦成都
-    t1 = MyThread("269177")
-    # 伍佰合肥
-    t2 = MyThread("277793")
-
-    t1.start()
-    t2.start()
+    lst = [
+        MaoyanMonitor("269177", "薛之谦成都"),
+        MaoyanMonitor("277793", "伍佰合肥"),
+        MaoyanMonitor("269177", "成都薛之谦"),
+        MaoyanMonitor("289042", "温州薛之谦"),
+    ]
+    for i in lst:
+        threading.Thread(target=i.start).start()
 
 
 console = Console()
