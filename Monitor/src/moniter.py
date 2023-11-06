@@ -70,8 +70,9 @@ class PerformanceResponse:
 
 
 class PerformanceMonitor:
-    def __init__(self, id: str, name: str):
+    def __init__(self, id: str, title: str):
         self.id = id
+        self.title = title
         self.app_key = 12574478
         self._m_h5_tk = ""
         self._m_h5_tk_enc = ""
@@ -173,7 +174,7 @@ class PerformanceMonitor:
         try:
             performance = PerformanceResponse(response)
             console.log(
-                f"ID: {self.id}",
+                f"标题: {self.title}",
                 f"演出ID: {performance.id}",
                 f"演出名: {performance.name}",
                 f"可购票: {[i['priceName'] for i in performance.sku_list]}",
@@ -214,8 +215,8 @@ class PerformanceMonitor:
 
 
 async def main():
-    async def new_task(monitor: PerformanceMonitor):
-        task_id = progress.add_task(monitor.id, total=None)
+    async def new_task(progress: Progress, monitor: PerformanceMonitor):
+        task_id = progress.add_task(monitor.title, total=None)
         await monitor.start()
         progress.remove_task(task_id)
 
@@ -231,7 +232,7 @@ async def main():
             monitor = await monitor_queue.get()
             if monitor is Status.EXIT:
                 return
-            asyncio.create_task(new_task(monitor))
+            asyncio.create_task(new_task(progress, monitor))
             await asyncio.sleep(0.5)
 
 
