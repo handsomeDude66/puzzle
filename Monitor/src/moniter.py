@@ -13,7 +13,7 @@ from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 from wxpusher import WxPusher
 
 import settings
-from proxy import delete_proxy, get_proxy
+from proxy import get_proxy
 
 
 def is_expired(data: dict) -> bool:
