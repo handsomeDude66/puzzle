@@ -1,1 +1,0 @@
-TIME_INTERVAL = 2

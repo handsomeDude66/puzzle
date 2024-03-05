@@ -1,22 +1,29 @@
-"""
-!Deprecated
-"""
-
 import base64
+import datetime
+import os
 from urllib.parse import parse_qs
 from io import BytesIO
 from pathlib import Path
+import uuid
 
 import cv2
 from cv2.typing import MatLike
 import numpy as np
-# from flask import Flask, request
-from pydantic import BaseModel
+from flask import Flask, request
+from pydantic import BaseModel,Base64Str
 from PIL import Image
+from fastapi import Depends, FastAPI, Form, Header, Query, Request
 
+# class Item(BaseModel):
+#     name: str
+#     age: int
 
-# bg = "./py/images/gap.png"
-# block = "./py/images/block.png"
+app = FastAPI()
+
+# @app.get("/items/")
+# def create_item(item: Item = Depends()):
+#     return item.dict()
+
 def get_distance(tp: MatLike, bg: MatLike, im_show=False):
     """
     :param bg: 背景图路径或Path对象或图片二进制
@@ -50,6 +57,7 @@ def get_distance(tp: MatLike, bg: MatLike, im_show=False):
     bg = bg.copy()
     cv2.rectangle(bg, (x, y), (_x, _y), (0, 0, 255), 2)
     # 显示缺口识别结果
+    print(distance)
     if im_show:
         imshow(bg)
     return distance
@@ -66,22 +74,48 @@ class Params(BaseModel):
     image1: str
     image2: str
 
-
-async def puzzle(request: Request) -> int:
+@app.post("/puzzle/")
+async def puzzle(param: Params):
+    # print(image1)
     # 解码Base64字符串
     # 将数据转换为NumPy数组
     # 使用cv2.imdecode将NumPy数组转换为图像
-    params = parse_qs(await request.body())
-    image1 = params.get(b'image1') or [b'']
-    image2 = params.get(b'image2') or [b'']
-    file = Image.open(BytesIO(base64.b64decode(image1[0])))
+    file = Image.open(BytesIO(base64.b64decode(param.image1)))
     block = cv2.cvtColor(np.asarray(file), cv2.COLOR_RGB2BGR)
-    file = Image.open(BytesIO(base64.b64decode(image2[0])))
+    file = Image.open(BytesIO(base64.b64decode(param.image2)))
     bg = cv2.cvtColor(np.asarray(file), cv2.COLOR_RGB2BGR)
+    # base64_to_img(block, bg)
     # imshow(block)
     # imshow(bg)
-    # block = cv2.imdecode( np.frombuffer(base64.b64decode(images[0]), np.uint8), cv2.IMREAD_COLOR)
-    # bg = cv2.imdecode( np.frombuffer(base64.b64decode(images[1]), np.uint8), cv2.IMREAD_COLOR)
+    # block = cv2.imdecode( np.frombuffer(base64.b64decode(image1), np.uint8), cv2.IMREAD_COLOR)
+    # bg = cv2.imdecode( np.frombuffer(base64.b64decode(image2), np.uint8), cv2.IMREAD_COLOR)
     # cv2.imshow("Title", bg)
     distance = get_distance(block, bg)
+    print(distance)
     return distance
+
+def base64_to_img(bstr1, bstr2, dir_path="./test/"):
+    
+    now = datetime.datetime.now()
+
+    timestamp = now.strftime("%Y_%m_%d_%H:%M")
+    imgdata1 = base64.b64decode(bstr1)
+    imgdata2 = base64.b64decode(bstr2)
+    file_name1 =  str(uuid.uuid4()) +".png"  # 使用UUID生成文件名
+    file_name2 =  str(uuid.uuid4()) +".png"  # 使用UUID生成文件名
+    print(file_name1)
+    print(file_name2)
+    file_path1 = os.path.join(dir_path, file_name1)
+    file_path2 = os.path.join(dir_path, file_name2)
+    with open(file_path1, 'wb') as f:
+        f.write(imgdata1)
+    with open(file_path2, 'wb') as f:
+        f.write(imgdata2)
+
+@app.get("/puzzle/")
+def sb():
+    return '别用get了,想要源码直接来找我好吗北鼻'
+
+@app.post("/isKm")
+def isKm():
+    pass
