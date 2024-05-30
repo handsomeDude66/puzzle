@@ -10,7 +10,6 @@ from paddleocr import PaddleOCR
 import cv2
 from cv2.typing import MatLike
 import numpy as np
-from flask import Flask, request
 from pydantic import BaseModel,Base64Str
 from PIL import Image
 from fastapi import Depends, FastAPI, Form, Header, Query, Request

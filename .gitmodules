@@ -1,0 +1,3 @@
+[submodule "py-lmdb"]
+	path = py-lmdb
+	url = https://github.com/jnwatson/py-lmdb
