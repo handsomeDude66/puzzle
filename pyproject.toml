@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add your description here"
 dependencies = [
     "setuptools",
-    "lmdb @ file:./py-lmdb",
+    "lmdb @ file:c:/Users/Administrator/Desktop/project/py-lmdb",
     "paddlepaddle",
     "paddleocr",
     "fastapi",
